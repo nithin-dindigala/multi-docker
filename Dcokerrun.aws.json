@@ -1,0 +1,43 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions":[
+        {
+            "name" : "client",
+            "image": "nithindindigala/multi-client",
+            "hostname": "client",
+            "essential": false
+            
+        },
+        {
+            
+            "name":"server",
+            "image":"nithindindigala/multi-server",
+            "hostname":"api",
+            "essential": false
+        },
+        {
+            "name":"worker",
+            "image":"nithindindigala/multi-worker",
+            "hostname":"worker",
+            "essential": false
+            
+        },
+        {
+            "name":"nginx",
+            "image":"nithindindigala/multi-nginx",
+            "hostname":"nginx",
+            "essential": true,
+            "portMappings":[
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                    
+                }
+            ],
+            "links":["client","server"]
+            
+        }
+        
+    ]
+    
+}
